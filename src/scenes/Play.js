@@ -12,11 +12,17 @@ class Play extends Phaser.Scene {
                 this.load.image('desert', './assets/desert.png');
                 this.load.image('horse', './assets/horse.png');
 
+                // load music
+                this.load.audio('music', './assets/wild west.mp3');
+
                 // load explosion spritesheet
                 this.load.spritesheet('explosion', './assets/explosion.png', {frameWidth: 64, frameHeight: 32, startFrame: 0, endFrame: 9});
               }
         
         create() {
+                // play background music
+                this.sound.play('music');
+
                 // animation config
                 this.anims.create({
                         key: 'explode',
@@ -90,6 +96,7 @@ class Play extends Phaser.Scene {
                 this.ship01.update();           // update spaceships (x3)
                 this.ship02.update();
                 this.ship03.update();
+
                 // check collisions
                 if(this.checkCollision(this.p1Rocket, this.ship03)) {
                         this.p1Rocket.reset();
